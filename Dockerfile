@@ -9,7 +9,7 @@ RUN apt update && apt upgrade -y --no-install-recommends
 
 RUN apt update && apt remove -y clang* lld* llvm* && apt install -y gcc g++ cmake clang-12 bc rsync cpio lld-15
 
-RUN apt install python2.7 && update-alternatives --install /usr/bin/python python /usr/bin/python2.7 500
+RUN apt install -y python2.7 && update-alternatives --install /usr/bin/python python /usr/bin/python2.7 500
 
 RUN apt-get install -y git-core gnupg flex bison build-essential zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 libncurses5 lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z1-dev libgl1-mesa-dev libxml2-utils xsltproc unzip fontconfig
 
