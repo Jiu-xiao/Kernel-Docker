@@ -1,0 +1,20 @@
+FROM ubuntu-latest
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+LABEL maintainer="2592509183@qq.com"
+LABEL description="This is a Docker Image for kernel build."
+
+RUN apt update && apt upgrade -y --no-install-recommends
+
+RUN apt update && apt remove -y clang* lld* llvm* && apt install -y gcc g++ cmake clang-12 bc rsync cpio lld-15
+
+RUN apt install python2.7 && update-alternatives --install /usr/bin/python python /usr/bin/python2.7 500
+
+RUN apt-get install -y git-core gnupg flex bison build-essential zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 libncurses5 lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z1-dev libgl1-mesa-dev libxml2-utils xsltproc unzip fontconfig
+
+RUN apt-get install -y libx11-dev libreadline-dev libgl1-mesa-dev g++-multilib git flex bison gperf build-essential libncurses-dev tofrodos libxml2-utils xsltproc zlib1g-dev dpkg-dev libsdl1.2-dev gnupg flex bison gperf build-essential zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 lib32ncurses5-dev x11proto-core-dev libx11-dev libgl1-mesa-dev libxml2-utils xsltproc unzip m4 lib32z1-dev ccache libssl-dev
+
+RUN rm -rf /usr/bin/clang && ln -s /usr/bin/clang-12 /usr/bin/clang && ln -s /usr/bin/llvm-ar-12 /usr/bin/llvm-ar && ln -s /usr/bin/llvm-nm-12 /usr/bin/llvm-nm && ln -s /usr/bin/llvm-objdump-12 /usr/bin/llvm-objdump && ln -s /usr/bin/llvm-objcopy-12 /usr/bin/llvm-objcopy && ln -s /usr/bin/ld.lld-15 /usr/bin/ld.lld
+
+RUN wget https://www.openssl.org/source/openssl-3.0.7.tar.gz && tar -xf openssl-3.0.7.tar.gz && cd openssl-3.0.7 && ./config --prefix=/usr --openssldir=/usr shared zlib && make -j16 && make install

@@ -1,0 +1,12 @@
+FROM ubuntu-latest
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+LABEL maintainer="2592509183@qq.com"
+LABEL description="This is a Docker Image for kernel build."
+
+RUN apt update && apt upgrade -y --no-install-recommends
+
+RUN sudo apt update && sudo apt remove -y clang* lld* llvm* && sudo apt install -y gcc g++ cmake clang-12 bc rsync cpio lld-15
+
+RUN 
