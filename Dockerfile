@@ -7,7 +7,7 @@ LABEL description="This is a Docker Image for kernel build."
 
 RUN apt update && apt upgrade -y --no-install-recommends
 
-RUN apt update && apt remove -y clang* lld* llvm* && apt install -y gcc g++ cmake clang-12 bc rsync cpio lld-15
+RUN apt update && apt remove -y clang* lld* llvm* && apt install -y gcc g++ cmake clang-12 bc rsync cpio lld-15 wget
 
 RUN apt install -y python2.7 && update-alternatives --install /usr/bin/python python /usr/bin/python2.7 500
 
